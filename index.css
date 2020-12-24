@@ -1,0 +1,66 @@
+body{
+    background-color: whitesmoke;
+}
+
+button{
+    font-size: 50px;
+}
+.CalculatorArea{
+    width: 500px;
+    background-color: black;
+    margin-left: 30%;
+    padding: 10px 0px 25px 20px;
+}
+
+.screen{
+    width: 440px;
+    height: 100px;
+    /* background-color: whitesmoke; */
+    margin:30px;
+    
+}
+.inputNum{
+    height: 50px;
+    margin: 3px;
+    font-size: 50px;
+    text-align: right;
+    margin-bottom: 15px;   
+    width: 205px;
+    padding-left: 10px;
+}
+.inputNum::placeholder, #output::placeholder{
+    font-size: 15px;
+}
+
+#Modulus{
+    padding: 5px 23px;
+}
+#output{
+    height: 50px;
+    font-size: 50px;
+    text-align: right;
+    width: 425px;
+    /* margin: 5px; */
+}
+
+.buttons{
+    margin:0;
+    margin-left: 20px;
+}
+.btn{
+    margin:10px;
+    padding: 5px 30px ;
+}
+
+
+.ExtraButtons{
+    padding: 10px;
+    margin:10px;
+}
+
+
+#clear{
+    padding: 10px 130px;
+    color: #af0000
+    /*  margin-left:400px; */
+}

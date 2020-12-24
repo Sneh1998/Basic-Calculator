@@ -1,0 +1,144 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="index.css" rel="stylesheet" type="text/css">
+    <script src="index.js"></script>
+    <title>CALCULATOR</title>
+</head>
+<body>            
+    <div class="CalculatorArea">
+
+        <div class="screen" id="screen">
+           <input type="text" id="num1" class="inputNum" onClick="switchFunction(1)"  placeholder="Number 1" />
+            <input type="text" id="num2" class="inputNum" onClick="switchFunction(2)" placeholder="Number 2" />
+            <input type="text" id="output" readonly placeholder="Output" />
+        </div>
+        <div class="buttons"> 
+            <button class="btn" onClick="printOnScreen(7)" id="7">7</button>
+            <button class="btn" onClick="printOnScreen(8)" id="8">8</button>
+            <button class="btn" onClick="printOnScreen(9)" id="9">9</button>
+            <button class="btn" onClick="arithmeticOps('/')" title="Divide" id="btn-divide">/</button> 
+        </div>
+        <div class="buttons">
+            <button class="btn" onClick="printOnScreen(4)" id="4">4</button>
+            <button class="btn" onClick="printOnScreen(5)" id="5">5</button>
+            <button class="btn" onClick="printOnScreen(6)" id="6">6</button>
+            <button class="btn" onClick="arithmeticOps('*')" title="Multiply" id="btn-multiply">*</button>
+        </div>
+        <div class="buttons">
+            <button class="btn" onClick="printOnScreen(1)" id="1">1</button>
+            <button class="btn" onClick="printOnScreen(2)" id="2">2</button>
+            <button class="btn" onClick="printOnScreen(3)" id="3">3</button>
+            <button class="btn" onClick="arithmeticOps('-')" title="Subtract" id="btn-minus">-</button>
+        </div>
+        <div class="buttons">
+            <button class="btn" onClick="arithmeticOps('%')" title="Modulus" id="Modulus" id="%">%</button>
+            <button class="btn" onClick="printOnScreen(0)" id="0">0</button>
+            <button class="btn" onClick="printOnScreen('.')" id="btn-dot">.</button>
+            <button class="btn" onClick="arithmeticOps('+')" title="Sum" id="btn-add">+</button>
+        </div>
+        <div class="buttons">
+            <button class="ExtraButtons" onClick="clearFunction()" id="clear">CLEAR</button> 
+        </div>
+    </div>
+
+    <script>
+        window.focusOnElement=1;
+        function printOnScreen(val){
+        
+            if( window.focusOnElement != 1 ){
+                var a=document.getElementById('num2').value;
+                if( checkIfDecimal(a) && val === '.' ){
+                    return;
+                }
+                document.getElementById('num2').value+=val+"";
+            }else{
+                var a=document.getElementById('num1').value;
+                if( checkIfDecimal(a) && val === '.' ){
+                    return;
+                } 
+                document.getElementById('num1').value+=val+""; 
+            }
+        }
+        
+        function checkIfDecimal(a){
+            if((a.indexOf('.')>-1)){
+                document.getElementById('btn-dot').disabled=true;
+                return true;   
+            }else{
+                document.getElementById('btn-dot').disabled=false;
+                return false;
+            }
+        }
+        function switchFunction(side){
+            window.focusOnElement=side;
+            
+        }
+
+        function arithmeticOps(val){
+            var num1=document.getElementById('num1').value;
+            var num2=document.getElementById('num2').value;
+            console.log("aritmetic", num1,  val,num2);
+            var result=0;
+            switch(val){
+                case '+':
+                    result=eval(num1)+eval(num2);
+                    equalFunc(result);
+                    console.log(result);
+                break;
+                case '-':
+                    result=num1-num2;
+                    equalFunc(result);
+                    console.log(result);
+                break;
+                case '*': 
+                    result=num1*num2;
+                    equalFunc(result);
+                    console.log(result);
+                break;
+                case '/':
+                    result=num1/num2;
+                    equalFunc(result);
+                    console.log(result);
+                break;
+                
+                    function equalFunc(result){
+                        document.getElementById('output').value=result;
+                    }
+
+                    // function placeDecimal(result){
+                    //     result=result+".";
+                    //     console.log(result);
+                    //     document.getElementById('num1').value=num1;
+                    // }
+
+                // case '.':
+                //     placeDecimal(result);                    
+                //     //equalFunc(result);
+                // break;
+                case '%':
+                    result=num1%num2;
+                    equalFunc(result);
+                    console.log(result);
+                default:
+                    console.log("default(wrong)");
+                break;
+            }
+        }
+
+        function clearFunction(){
+            var confirmVar = confirm("Do you want to erase the data?");
+            if(confirmVar==true){
+                document.getElementById('num1').value="";
+                document.getElementById('num2').value="";
+                document.getElementById('output').value="";
+                return;
+            }else{
+                return;
+            }
+            
+        }
+    </script>
+</body>
+</html>
